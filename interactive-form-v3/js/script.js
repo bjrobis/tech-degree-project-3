@@ -58,6 +58,10 @@ registeredActivities.addEventListener('change', e=> {
     } else if (e.target.checked === false) {
         totalCost = totalCost - dataCostNumber;
     }
-    
+    totalCostMessage.innerHTML = `Total: $${totalCost}`;
 })
 
+//let paymentMethod = document.getElementById('payment');
+//let creditCard = document.getElementById();
+//let paypal = document.getElementById();
+//let bitcoin = document.getElementById();
