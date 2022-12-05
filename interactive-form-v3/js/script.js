@@ -29,9 +29,9 @@ design.addEventListener('change', e => {
         for (let i = 0; i < shirtColorOptions.length; i++) {
             let theme = shirtColorOptions[i].getAttribute('data-theme');
             if (theme === "js puns") {
-               shirtColorOptions[i].disabled = false;
+               shirtColorOptions[i].style.display = 'inline';
             } else if (theme !== "js puns"){
-               shirtColorOptions[i].disabled = true;
+               shirtColorOptions[i].style.display = 'none';
             }
         }
     } else if (e.target.value === 'heart js') {
@@ -39,9 +39,9 @@ design.addEventListener('change', e => {
         for (let i = 0; i < shirtColorOptions.length; i++) {
             theme = shirtColorOptions[i].getAttribute('data-theme');
             if (theme === "heart js") {
-                shirtColorOptions[i].disabled = false;
+                shirtColorOptions[i].style.display = 'inline';
             } else if (theme !== "heart js") {
-                shirtColorOptions[i].disabled = true;
+                shirtColorOptions[i].style.display = 'none';
             }
         }
 
@@ -73,9 +73,9 @@ let paypal = document.getElementById('paypal');
 let bitcoin = document.getElementById('bitcoin');
 
 //default visibility for each of the payment methods
-paypal.style.visibility = 'hidden';
-bitcoin.style.visibility = 'hidden';
-creditCard.style.visibility = 'visible';
+paypal.style.display = 'none';
+bitcoin.style.display = 'none';
+creditCard.style.display = 'inline';
 
 //sets the default payment method to the creditcard option
 let defaultPayment = payment.children[1];
@@ -85,17 +85,17 @@ defaultPayment.setAttribute('selected', 'selected');
 payment.addEventListener('change', e => {
     let selectedPayment = e.target.value;
     if (selectedPayment === 'paypal') {
-        paypal.style.visibility = 'visible';
-        bitcoin.style.visibility = 'hidden';
-        creditCard.style.visibility = 'hidden';
+        paypal.style.display = 'inline';
+        bitcoin.style.display = 'none';
+        creditCard.style.display = 'none';
     } else if (selectedPayment === 'bitcoin') {
-        paypal.style.visibility = 'hidden';
-        bitcoin.style.visibility = 'visible';
-        creditCard.style.visibility = 'hidden';
+        paypal.style.display = 'none';
+        bitcoin.style.display = 'inline';
+        creditCard.style.display = 'none';
     } else if (selectedPayment === 'credit-card') {
-        paypal.style.visibility = 'hidden';
-        bitcoin.style.visibility = 'hidden';
-        creditCard.style.visibility = 'visible';
+        paypal.style.display = 'none';
+        bitcoin.style.display = 'none';
+        creditCard.style.display = 'inline';
     }
 
 })
@@ -158,40 +158,41 @@ form.addEventListener('submit', e => {
         validItem(totalCostMessage);
     }
 
-    let cardNumber2 = cardNumber.value;
-    let regexCardNumber = /^(\d{13,16})$/.test(cardNumber2);
+    
+        let cardNumber2 = cardNumber.value;
+        let regexCardNumber = /^(\d{13,16})$/.test(cardNumber2);
 
-    if (creditCard.style.visibility === 'visible') {
-        if (regexCardNumber === false) {
+        if (creditCard.style.display === 'inline') {
+         if (regexCardNumber === false) {
             console.log('Invalid Card Number');
             e.preventDefault();
             invalidItem(cardNumber);
-        } else {
-            validItem(cardNumber);
+            } else {
+             validItem(cardNumber);
+            }
         }
-    }
 
-    let zip2 = zip.value;
-    let regexZip = /^(\d{5})$/.test(zip2);
+        let zip2 = zip.value;
+     let regexZip = /^(\d{5})$/.test(zip2);
 
-    if (regexZip === false) {
-        console.log('invalid zipcode');
-        e.preventDefault();
-        invalidItem(zip);
-    } else {
-        validItem(zip);
-    }
+        if (regexZip === false && creditCard.style.display === 'inline') {
+         console.log('invalid zipcode');
+         e.preventDefault();
+         invalidItem(zip);
+     } else {
+            validItem(zip);
+     }
 
-    let cvv2 = cvv.value;
-    let regexCvv = /^(\d{3})$/.test(cvv2);
+        let cvv2 = cvv.value;
+        let regexCvv = /^(\d{3})$/.test(cvv2);
 
-    if (regexCvv === false) {
-        console.log('invalid cvv');
-        e.preventDefault();
-        invalidItem(cvv);
-    } else {
-        validItem(cvv);
-    }
+        if (regexCvv === false && creditCard.style.display === 'inline') {
+            console.log('invalid cvv');
+            e.preventDefault();
+            invalidItem(cvv);
+     } else {
+            validItem(cvv);
+        }
 })
 
 
