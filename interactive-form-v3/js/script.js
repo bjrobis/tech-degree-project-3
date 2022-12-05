@@ -110,14 +110,14 @@ let form = document.querySelector('form');
 function invalidItem(variable){
     variable.parentElement.classList.add('not-valid');
     variable.parentElement.classList.remove('valid');
-    variable.parentElement.lastElementChild.style.visibility = 'visible';
+    variable.parentElement.lastElementChild.style.display = 'inline';
 };
 
 //validItem func adds the 'valid' class to the parentElement and removes the 'not-valid' class from it
 function validItem(variable){
     variable.parentElement.classList.add('valid');
     variable.parentElement.classList.remove('not-valid');
-    variable.parentElement.lastElementChild.style.visibility = 'hidden';
+    variable.parentElement.lastElementChild.style.display = 'none';
 
 };
 
