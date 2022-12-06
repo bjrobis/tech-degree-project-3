@@ -24,6 +24,7 @@ let design = document.getElementById('design');
 
 //enable and disable color options based on the selected t-shirt theme
 design.addEventListener('change', e => {
+    shirtColor.value = shirtColorOptions[0];
     if (e.target.value === 'js puns') {
         shirtColor.disabled = false;
         for (let i = 0; i < shirtColorOptions.length; i++) {
@@ -34,6 +35,7 @@ design.addEventListener('change', e => {
                shirtColorOptions[i].style.display = 'none';
             }
         }
+
     } else if (e.target.value === 'heart js') {
         shirtColor.disabled = false;
         for (let i = 0; i < shirtColorOptions.length; i++) {
